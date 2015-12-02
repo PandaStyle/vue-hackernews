@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueResource from 'vue-resource'
 import { domain, fromNow } from './filters'
 import App from './components/App.vue'
 import NewsView from './components/NewsView.vue'
 import ItemView from './components/ItemView.vue'
 import UserView from './components/UserView.vue'
+import FeedView from './components/FeedView.vue'
 
-// install router
-Vue.use(Router)
+
+Vue.use(Router);
+
+Vue.use(VueResource);
+
 
 // register filters globally
 Vue.filter('fromNow', fromNow)
@@ -25,6 +30,9 @@ router.map({
   },
   '/item/:id': {
     component: ItemView
+  },
+  '/feed/:type': {
+    component: FeedView
   }
 })
 

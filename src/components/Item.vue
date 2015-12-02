@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="item">
     <span class="index">{{index}}.</span>
@@ -20,7 +22,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
 export default {
 
   name: 'Item',

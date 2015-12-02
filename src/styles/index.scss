@@ -1,0 +1,261 @@
+@import "globals";
+
+$button-height: 27px;
+$button-width: 27px;
+
+
+body{
+  background-color: $body-background;
+  font-family: 'Muli', sans-serif;
+  font-size: 16px;
+}
+
+@import "spinner.scss";
+
+.navbar {
+  z-index: 1;
+  background: #FFFFFF;
+  top: 0;
+  box-shadow: 0 0 1px rgba(0,0,0,0.15);
+
+  padding-left: 43px;
+  padding-right: 50px;
+
+  .logo {
+    float: left;
+  }
+
+  .logo img{
+    opacity: 0.75;
+    height: 60px;
+  }
+
+
+  ul.menu {
+    margin-left: 30px;
+    display: inline-block;
+    padding-top: 3px;
+  }
+
+  li {
+    display: inline-block;
+
+    a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: $grey;
+    }
+    a:hover{
+      @include defaulttransition();
+      color: $dark-grey;
+    }
+    &.active a{
+      color: $dark-grey;
+      border-bottom: 2px solid $red;
+    }
+  }
+
+  .hamburger {
+    float: right;
+    margin: 16px;
+    display: block;
+    font-size: 23px;
+    float: right;
+    color: $dark-grey;
+    position: absolute;
+    right: 50px;
+    top: 5px;
+    z-index: 1000;
+
+  }
+  .button_container {
+
+    height: 27px;
+    width: $button-width;
+    cursor: pointer;
+    z-index: 1000;
+    transition: opacity .25s ease;
+
+
+    &.active {
+      position: fixed;
+
+      .top {
+        transform: translateY(11px) translateX(0) rotate(45deg);
+        background: $dark-grey;
+        z-index: 1000;
+        top: -5px;
+      }
+      .middle {
+        opacity: 0;
+        background: $dark-grey;
+        z-index: 1000;
+      }
+
+      .bottom {
+        transform: translateY(-11px) translateX(0) rotate(-45deg);
+        background: $dark-grey;
+        z-index: 1000;
+        top: 17px;
+      }
+    }
+
+    span {
+      background: $dark-grey;
+      border: none;
+      height: 3px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition:  all .35s ease;
+      cursor: pointer;
+
+      &:nth-of-type(2) {
+        top: 6px;
+      }
+
+      &:nth-of-type(3) {
+        top: 12px;
+      }
+    }
+  }
+
+}
+
+menu {
+  @include defaulttransition();
+
+  font-family: 'Playfair Display', serif;
+
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  z-index: 0;
+  background-color: #F1F1F1;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 500;
+  }
+
+  ul {
+    position: relative;
+    top: 50%;
+    transform: translateY(-70%);
+
+    li {
+      font-size: 3.8rem;
+      line-height: 150%;
+      vertical-align: baseline;
+      list-style: none;
+
+      a {
+        color: $dark-grey;
+        text-decoration: none;
+      }
+
+
+      .bordered {
+        @include defaulttransition();
+        position: relative;
+
+        &:after {
+          height: 3px;
+          width: 0;
+          display: block;
+          background: #17191c;
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -3px;
+        }
+        &:hover:after {
+          @include defaulttransition();
+          width: 100%;
+          background: $dark-grey;
+        }
+      }
+
+      .suggest {
+        background: none;
+        border: none;
+        border-radius: 100%;
+        outline: 0;
+        border: 0;
+
+        &:focus, &:active {
+          background: none;
+          border: none;
+        }
+      }
+
+    }
+  }
+}
+
+
+
+
+.grid {
+  margin: 20px 50px;
+}
+
+
+/* Salvattore */
+
+.column {
+  float: left;
+}
+.size-1of5 {
+  width: 20%;
+}
+
+.size-1of4 {
+  width: 25%;
+}
+.size-1of3 {
+  width: 33.333%;
+}
+.size-1of2 {
+  width: 50%;
+}
+
+/* Configurate salvattore with media queries */
+@media screen and (max-width: 700px) {
+  [data-columns]::before {
+    content: '1 .column';
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1200px) {
+  [data-columns]::before {
+    content: '2 .column.size-1of2';
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1525px) {
+  [data-columns]::before {
+    content: '3 .column.size-1of3';
+  }
+
+}
+
+@media screen and (min-width: 1526px) and (max-width: 1825px) {
+  [data-columns]::before {
+    content: '4 .column.size-1of4';
+  }
+}
+
+@media screen and (min-width: 1826px)  {
+  [data-columns]::before {
+    content: '5 .column.size-1of5';
+  }
+}

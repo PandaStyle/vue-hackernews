@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
 import store from '../store'
 import Item from './Item.vue'
 import Comment from './Comment.vue'

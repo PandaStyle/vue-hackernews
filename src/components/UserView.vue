@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
 import store from '../store'
 
 export default {
